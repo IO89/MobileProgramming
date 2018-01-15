@@ -30,6 +30,11 @@
                 return {counter: prevState.counter-1}
             });
         }
+        buttonPressedReset = ()=> {
+            this.setState((prevState) => {
+                return {counter : 0}
+            });
+        }
         
         render() { 
           return (
@@ -37,6 +42,7 @@
               <div>Counter: {this.state.counter}</div>
               <button onClick={this.buttonPressedIncrement}>Plus one</button>
               <button onClick={this.buttonPressedDecrement}>Minus one</button>
+              <button onClick={this.buttonPressedReset}>Reset </button>
             </div>
           );
         }
