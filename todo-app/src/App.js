@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import TodoTable from './TodoTable';
+
 
 class App extends Component {
   constructor(props) {
@@ -28,15 +30,6 @@ class App extends Component {
   }
 
   render() {
-    const itemsList = this.state.todos.map((item, index) =>
-      <tr key={index}>
-        <td>{item.desc}</td>
-        <td>{item.date}</td>
-        <td><button id={index} onClick={this.deleteItem}>Delete</button></td>
-      </tr>
-
-    )
-
 
     return (
       <div className="App">
@@ -45,18 +38,16 @@ class App extends Component {
         </div>
         <div>
           <form onSubmit={this.addTodo}>
-            <p>Description:
+            Description:
             <input type="text" name="description" onChange={this.inputChanged} value={this.state.description} />
               Date:
             <input type="date" name="date" onChange={this.inputChanged} value={this.state.date} />
               <input type="submit" value="Add" />
-            </p>
-          </form>
+             </form>
         </div>
         <div>
           <table align="center"><tbody>
-            <tr><th>Description</th><th>Date</th></tr>
-            {itemsList}
+            <TodoTable todos={this.state.todos} />
           </tbody>
           </table>
         </div>
