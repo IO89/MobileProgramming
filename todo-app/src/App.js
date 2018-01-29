@@ -23,6 +23,7 @@ class App extends Component {
   }
 
   deleteItem = (event) => {
+    const index = +event.target.id;
     event.preventDefault();
     this.setState({
       todos: [delete this.state.todos.filter((item, index) => item !== index)]
@@ -46,10 +47,10 @@ class App extends Component {
              </form>
         </div>
         <div>
-          <table align="center"><tbody>
+          
             <TodoTable todos={this.state.todos} />
-          </tbody>
-          </table>
+          
+        
         </div>
       </div>
     );
