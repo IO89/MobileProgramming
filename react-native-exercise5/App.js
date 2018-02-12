@@ -1,20 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import HomeScreen from './HomeScreen';
-import SettingsScreen from './SettingsScreen';
-import  'expo';
+import CalculatorScreen from './CalculatorScreen';
+import HistoryScreen from './HistoryScreen';
 
 const MyApp= StackNavigator({
-  Home:{screen:HomeScreen},
-  History:{screen:SettingsScreen}
+  Calculator:{screen:CalculatorScreen},
+  History:{screen:HistoryScreen}
 });
 
 export default class App extends React.Component {
   render() {
     return (
       <MyApp />
-   );
+    );
   }
 }
 

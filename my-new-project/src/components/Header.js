@@ -26,8 +26,6 @@ const styles = {
     },
     textStyle: {
         fontSize: 40,
-
     }
 };
-
 export default Header;

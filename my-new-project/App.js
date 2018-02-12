@@ -1,13 +1,17 @@
 import React from 'react';
 import { View } from 'react-native';
-import Header from './src/components/header';
+import Header from './src/components/Header';
+import AlbumList from './src/components/AlbumList';
 
-const DATABASEAPI = 'https://events-app-54f37.firebaseio.com/';
 
 export default class App extends React.Component {
+  
   render() {
     return (
-      <Header headerText={'Events'} />
+      <View style={{flex:1}}>
+        <Header headerText={'Albums'} />
+        <AlbumList />
+      </View>
     );
   }
 }
