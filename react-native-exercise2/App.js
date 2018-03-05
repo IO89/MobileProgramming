@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Alert, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, Alert, TextInput, Button, AsyncStorage } from 'react-native';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -8,14 +8,26 @@ export default class App extends React.Component {
       guessValue: 0,
       randomResult: parseInt(Math.floor(Math.random() * 100) + 1),//here we need to set random value and parse it!
       counter: 0,
-      outputText: "Guess the number between 1 and 100"
+      outputText: "Guess the number between 1 and 100",
+      highScore:0
     }
   };
+
+    addScore = async () => {
+    await AsyncStorage.setItem('scoreList', JSON.stringify(this.state.highScore));
+    
+  }
+  updateScore = async() => {
+    let response = await AsyncStorage.getItem('scoreList');
+    this.setState({highScore:response });
+  }
 
   buttonGuess = () => {
     const randomResult = this.state.randomResult;
     const guessValue = this.state.guessValue;
     const counter = this.state.counter;
+    const highScore = this.state.score;
+    
 
     if (randomResult > guessValue) {
       const outputText = 'Your guess ' + guessValue + ' is too low';
@@ -29,9 +41,13 @@ export default class App extends React.Component {
       const outputText = 'Congrats! ' + guessValue + ' is the right value '
       Alert.alert('You made it in ' + (counter + 1) + ' attempts');
       this.setState({ outputText: outputText });
-    }
-  };
+      this.setState({ highScore: this.state.counter + 1 });
+      }
 
+  };
+  componentDidMount() {
+    this.updateScore();
+  }
 
   render() {
     return (
@@ -45,6 +61,10 @@ export default class App extends React.Component {
           onChangeText={(guessValue) => this.setState({ guessValue })}
         />
         <Button onPress={this.buttonGuess} title="Guess" />
+        <Text >
+          HighScore:{this.state.highScore}
+        </Text>
+        <Text>TheNumber:{this.state.randomResult}</Text>
       </View>
     );
   }
