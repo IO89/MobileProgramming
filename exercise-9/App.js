@@ -67,7 +67,7 @@ export default class App extends React.Component {
     const url =
       "https://maps.googleapis.com/maps/api/geocode/json?address=" +
       this.state.inputAddress +
-      "&key=AIzaSyBw10uHAN3yzvIQbv2lFJPQM0vuylbzhTA";
+      "&key=AIzaSyC-8hEW_ejToeLmzopulC0YP7PDv0-5ypI";
     fetch(url)
       .then(response => response.json())
       .then(responseJson => {
