@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux';
+import Authreducer from './AuthReducer';
+import EventsFormReducer from './EventsFromReducer';
 
 export default combineReducers({
-    some: () => []
+    auth: Authreducer,
+    eventForm: EventsFormReducer
 });
