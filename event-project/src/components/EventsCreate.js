@@ -6,11 +6,10 @@ import {Picker,Text} from 'react-native';
 
 
 class EventsCreate extends Component{
-
+// When button is pressed call action eventCreate and pass props
     onButtonPress(){
         const {eventName,place,kind} = this.props;
-
-        this.props.eventCreate({eventName,place,kind});
+        this.props.eventCreate({eventName,place,kind:kind || 'Music'});
     }
 
     render(){
