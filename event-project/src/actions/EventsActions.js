@@ -3,7 +3,8 @@ import {Actions} from 'react-native-router-flux';
 import{
     EVENT_UPDATE,
     EVENT_CREATE,
-    EVENTS_FETCH_SUCCESS
+    EVENTS_FETCH_SUCCESS,
+    EVENT_SAVE_SUCCESS
 } from './types';
 
 // Whenever something is updated(prop) and changed to new value
@@ -37,4 +38,31 @@ export const eventsFetch = () => {
               dispatch({ type:EVENTS_FETCH_SUCCESS, payload: snapshot.val()} );
           });
   };
+};
+
+export const eventSave = ({eventName,place,kind,uid }) =>{
+    const { currentUser } = firebase.auth();
+
+    return (dispatch) =>{
+        firebase.database().ref(`/users/${currentUser.uid}/events/${uid}`)
+            .set({eventName,place,kind})
+            .then(() => {
+                dispatch({type:EVENT_SAVE_SUCCESS})
+               Actions.eventsList({type:'reset'});
+            });
+    };
+};
+
+export const eventDelete = ({uid}) => {
+    const { currentUser } = firebase.auth();
+
+    return(dispatch)=>{
+        firebase.database().ref(`/users/${currentUser.uid}/events/${uid}`)
+            .remove()
+            .then(() =>{
+                dispatch({type:EVENT_SAVE_SUCCESS})
+                Actions.evetsList({type:'reset'});
+            });
+    };
+
 };

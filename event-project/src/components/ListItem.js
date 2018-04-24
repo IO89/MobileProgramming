@@ -13,7 +13,7 @@ const styles ={
 
 class ListItem extends Component{
     onRowPress(){
-        Actions.eventsCreate({event: this.props.event });
+        Actions.eventsEdit({event: this.props.event });
     }
 
     render(){
